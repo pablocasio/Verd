@@ -29,14 +29,53 @@ function money(n){
   return 'S/ ' + Number(n || 0).toFixed(2)
 }
 
+function createId(){
+  if(typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'){
+    return crypto.randomUUID()
+  }
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`
+}
+
+function safeStorage(){
+  try{
+    const storage = window.localStorage
+    storage.setItem('__verdulista_test__', '1')
+    storage.removeItem('__verdulista_test__')
+    return storage
+  }catch{
+    return null
+  }
+}
+
+const storage = typeof window !== 'undefined' ? safeStorage() : null
+
+function readStorage(key, fallback){
+  if(!storage) return fallback
+  try{
+    return JSON.parse(storage.getItem(key) || JSON.stringify(fallback))
+  }catch{
+    return fallback
+  }
+}
+
+function writeStorage(key, value){
+  if(!storage) return false
+  try{
+    storage.setItem(key, JSON.stringify(value))
+    return true
+  }catch{
+    return false
+  }
+}
+
 function App(){
   const [verdura, setVerdura] = useState('')
   const [precio, setPrecio] = useState('')
   const [cantidad, setCantidad] = useState(1)
   const [reporte, setReporte] = useState('')
-  const [items, setItems] = useState(() => JSON.parse(localStorage.getItem('verdulista_items') || '[]'))
-  const [historial, setHistorial] = useState(() => JSON.parse(localStorage.getItem('verdulista_historial') || '[]'))
-  const [sugerencias, setSugerencias] = useState(() => JSON.parse(localStorage.getItem('verdulista_sugerencias') || JSON.stringify(baseSuggestions)))
+  const [items, setItems] = useState(() => readStorage('verdulista_items', []))
+  const [historial, setHistorial] = useState(() => readStorage('verdulista_historial', []))
+  const [sugerencias, setSugerencias] = useState(() => readStorage('verdulista_sugerencias', baseSuggestions))
   const [toast, setToast] = useState('')
 
   const fecha = new Date().toLocaleDateString('es-PE', { weekday:'long', year:'numeric', month:'long', day:'numeric' })
@@ -59,7 +98,7 @@ function App(){
 
   function persistItems(next){
     setItems(next)
-    localStorage.setItem('verdulista_items', JSON.stringify(next))
+    writeStorage('verdulista_items', next)
   }
 
   function guardarSugerencia(nombre){
@@ -67,7 +106,7 @@ function App(){
     if(!existe){
       const next = [nombre.trim(), ...sugerencias]
       setSugerencias(next)
-      localStorage.setItem('verdulista_sugerencias', JSON.stringify(next))
+      writeStorage('verdulista_sugerencias', next)
     }
   }
 
@@ -81,7 +120,7 @@ function App(){
 
     guardarSugerencia(verdura)
     const nuevo = {
-      id: crypto.randomUUID(),
+      id: createId(),
       verdura: verdura.trim(),
       emoji: getEmoji(verdura),
       precio: p,
@@ -112,7 +151,7 @@ function App(){
       return
     }
     const nuevo = {
-      id: crypto.randomUUID(),
+      id: createId(),
       fecha: new Date().toLocaleString('es-PE'),
       items,
       reporte,
@@ -120,7 +159,7 @@ function App(){
     }
     const next = [nuevo, ...historial]
     setHistorial(next)
-    localStorage.setItem('verdulista_historial', JSON.stringify(next))
+    writeStorage('verdulista_historial', next)
     notify('Lista guardada en historial.')
   }
 
