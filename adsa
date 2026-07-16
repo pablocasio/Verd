@@ -1,0 +1,767 @@
+[1mdiff --git a/verdulista-react/dist/index.html b/verdulista-react/dist/index.html[m
+[1mindex a4430c0..154a278 100644[m
+[1m--- a/verdulista-react/dist/index.html[m
+[1m+++ b/verdulista-react/dist/index.html[m
+[36m@@ -3,7 +3,7 @@[m
+   <head>[m
+     <meta charset="UTF-8" />[m
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />[m
+[31m-    <title>Verdulista Pro</title>[m
+[32m+[m[32m    <title>Verdulista v1.0</title>[m
+     <script type="module" crossorigin src="/assets/index-B-_i9CGc.js"></script>[m
+     <link rel="stylesheet" crossorigin href="/assets/index-kJic9NsY.css">[m
+   </head>[m
+[1mdiff --git a/verdulista-react/node_modules/.bin/nanoid b/verdulista-react/node_modules/.bin/nanoid[m
+[1mdeleted file mode 100644[m
+[1mindex 46220bd..0000000[m
+[1m--- a/verdulista-react/node_modules/.bin/nanoid[m
+[1m+++ /dev/null[m
+[36m@@ -1,16 +0,0 @@[m
+[31m-#!/bin/sh[m
+[31m-basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")[m
+[31m-[m
+[31m-case `uname` in[m
+[31m-    *CYGWIN*|*MINGW*|*MSYS*)[m
+[31m-        if command -v cygpath > /dev/null 2>&1; then[m
+[31m-            basedir=`cygpath -w "$basedir"`[m
+[31m-        fi[m
+[31m-    ;;[m
+[31m-esac[m
+[31m-[m
+[31m-if [ -x "$basedir/node" ]; then[m
+[31m-  exec "$basedir/node"  "$basedir/../nanoid/bin/nanoid.cjs" "$@"[m
+[31m-else [m
+[31m-  exec node  "$basedir/../nanoid/bin/nanoid.cjs" "$@"[m
+[31m-fi[m
+[1mdiff --git a/verdulista-react/node_modules/.bin/nanoid b/verdulista-react/node_modules/.bin/nanoid[m
+[1mnew file mode 120000[m
+[1mindex 0000000..e2be547[m
+[1m--- /dev/null[m
+[1m+++ b/verdulista-react/node_modules/.bin/nanoid[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32m../nanoid/bin/nanoid.cjs[m
+\ No newline at end of file[m
+[1mdiff --git a/verdulista-react/node_modules/.bin/nanoid.cmd b/verdulista-react/node_modules/.bin/nanoid.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex 9c40107..0000000[m
+[1m--- a/verdulista-react/node_modules/.bin/nanoid.cmd[m
+[1m+++ /dev/null[m
+[36m@@ -1,17 +0,0 @@[m
+[31m-@ECHO off[m
+[31m-GOTO start[m
+[31m-:find_dp0[m
+[31m-SET dp0=%~dp0[m
+[31m-EXIT /b[m
+[31m-:start[m
+[31m-SETLOCAL[m
+[31m-CALL :find_dp0[m
+[31m-[m
+[31m-IF EXIST "%dp0%\node.exe" ([m
+[31m-  SET "_prog=%dp0%\node.exe"[m
+[31m-) ELSE ([m
+[31m-  SET "_prog=node"[m
+[31m-  SET PATHEXT=%PATHEXT:;.JS;=;%[m
+[31m-)[m
+[31m-[m
+[31m-endLocal & goto #_undefined_# 2>NUL || title %COMSPEC% & "%_prog%"  "%dp0%\..\nanoid\bin\nanoid.cjs" %*[m
+[1mdiff --git a/verdulista-react/node_modules/.bin/nanoid.ps1 b/verdulista-react/node_modules/.bin/nanoid.ps1[m
+[1mdeleted file mode 100644[m
+[1mindex d8a4d7a..0000000[m
+[1m--- a/verdulista-react/node_modules/.bin/nanoid.ps1[m
+[1m+++ /dev/null[m
+[36m@@ -1,28 +0,0 @@[m
+[31m-#!/usr/bin/env pwsh[m
+[31m-$basedir=Split-Path $MyInvocation.MyCommand.Definition -Parent[m
+[31m-[m
+[31m-$exe=""[m
+[31m-if ($PSVersionTable.PSVersion -lt "6.0" -or $IsWindows) {[m
+[31m-  # Fix case when both the Windows and Linux builds of Node[m
+[31m-  # are installed in the same directory[m
+[31m-  $exe=".exe"[m
+[31m-}[m
+[31m-$ret=0[m
+[31m-if (Test-Path "$basedir/node$exe") {[m
+[31m-  # Support pipeline input[m
+[31m-  if ($MyInvocation.ExpectingInput) {[m
+[31m-    $input | & "$basedir/node$exe"  "$basedir/../nanoid/bin/nanoid.cjs" $args[m
+[31m-  } else {[m
+[31m-    & "$basedir/node$exe"  "$basedir/../nanoid/bin/nanoid.cjs" $args[m
+[31m-  }[m
+[31m-  $ret=$LASTEXITCODE[m
+[31m-} else {[m
+[31m-  # Support pipeline input[m
+[31m-  if ($MyInvocation.ExpectingInput) {[m
+[31m-    $input | & "node$exe"  "$basedir/../nanoid/bin/nanoid.cjs" $args[m
+[31m-  } else {[m
+[31m-    & "node$exe"  "$basedir/../nanoid/bin/nanoid.cjs" $args[m
+[31m-  }[m
+[31m-  $ret=$LASTEXITCODE[m
+[31m-}[m
+[31m-exit $ret[m
+[1mdiff --git a/verdulista-react/node_modules/.bin/rolldown b/verdulista-react/node_modules/.bin/rolldown[m
+[1mdeleted file mode 100644[m
+[1mindex e7853ee..0000000[m
+[1m--- a/verdulista-react/node_modules/.bin/rolldown[m
+[1m+++ /dev/null[m
+[36m@@ -1,16 +0,0 @@[m
+[31m-#!/bin/sh[m
+[31m-basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")[m
+[31m-[m
+[31m-case `uname` in[m
+[31m-    *CYGWIN*|*MINGW*|*MSYS*)[m
+[31m-        if command -v cygpath > /dev/null 2>&1; then[m
+[31m-            basedir=`cygpath -w "$basedir"`[m
+[31m-        fi[m
+[31m-    ;;[m
+[31m-esac[m
+[31m-[m
+[31m-if [ -x "$basedir/node" ]; then[m
+[31m-  exec "$basedir/node"  "$basedir/../rolldown/bin/cli.mjs" "$@"[m
+[31m-else [m
+[31m-  exec node  "$basedir/../rolldown/bin/cli.mjs" "$@"[m
+[31m-fi[m
+[1mdiff --git a/verdulista-react/node_modules/.bin/rolldown b/verdulista-react/node_modules/.bin/rolldown[m
+[1mnew file mode 120000[m
+[1mindex 0000000..7725012[m
+[1m--- /dev/null[m
+[1m+++ b/verdulista-react/node_modules/.bin/rolldown[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32m../rolldown/bin/cli.mjs[m
+\ No newline at end of file[m
+[1mdiff --git a/verdulista-react/node_modules/.bin/rolldown.cmd b/verdulista-react/node_modules/.bin/rolldown.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex 1882f3e..0000000[m
+[1m--- a/verdulista-react/node_modules/.bin/rolldown.cmd[m
+[1m+++ /dev/null[m
+[36m@@ -1,17 +0,0 @@[m
+[31m-@ECHO off[m
+[31m-GOTO start[m
+[31m-:find_dp0[m
+[31m-SET dp0=%~dp0[m
+[31m-EXIT /b[m
+[31m-:start[m
+[31m-SETLOCAL[m
+[31m-CALL :find_dp0[m
+[31m-[m
+[31m-IF EXIST "%dp0%\node.exe" ([m
+[31m-  SET "_prog=%dp0%\node.exe"[m
+[31m-) ELSE ([m
+[31m-  SET "_prog=node"[m
+[31m-  SET PATHEXT=%PATHEXT:;.JS;=;%[m
+[31m-)[m
+[31m-[m
+[31m-endLocal & goto #_undefined_# 2>NUL || title %COMSPEC% & "%_prog%"  "%dp0%\..\rolldown\bin\cli.mjs" %*[m
+[1mdiff --git a/verdulista-react/node_modules/.bin/rolldown.ps1 b/verdulista-react/node_modules/.bin/rolldown.ps1[m
+[1mdeleted file mode 100644[m
+[1mindex 145fb8e..0000000[m
+[1m--- a/verdulista-react/node_modules/.bin/rolldown.ps1[m
+[1m+++ /dev/null[m
+[36m@@ -1,28 +0,0 @@[m
+[31m-#!/usr/bin/env pwsh[m
+[31m-$basedir=Split-Path $MyInvocation.MyCommand.Definition -Parent[m
+[31m-[m
+[31m-$exe=""[m
+[31m-if ($PSVersionTable.PSVersion -lt "6.0" -or $IsWindows) {[m
+[31m-  # Fix case when both the Windows and Linux builds of Node[m
+[31m-  # are installed in the same directory[m
+[31m-  $exe=".exe"[m
+[31m-}[m
+[31m-$ret=0[m
+[31m-if (Test-Path "$basedir/node$exe") {[m
+[31m-  # Support pipeline input[m
+[31m-  if ($MyInvocation.ExpectingInput) {[m
+[31m-    $input | & "$basedir/node$exe"  "$basedir/../rolldown/bin/cli.mjs" $args[m
+[31m-  } else {[m
+[31m-    & "$basedir/node$exe"  "$basedir/../rolldown/bin/cli.mjs" $args[m
+[31m-  }[m
+[31m-  $ret=$LASTEXITCODE[m
+[31m-} else {[m
+[31m-  # Support pipeline input[m
+[31m-  if ($MyInvocation.ExpectingInput) {[m
+[31m-    $input | & "node$exe"  "$basedir/../rolldown/bin/cli.mjs" $args[m
+[31m-  } else {[m
+[31m-    & "node$exe"  "$basedir/../rolldown/bin/cli.mjs" $args[m
+[31m-  }[m
+[31m-  $ret=$LASTEXITCODE[m
+[31m-}[m
+[31m-exit $ret[m
+[1mdiff --git a/verdulista-react/node_modules/.bin/vite b/verdulista-react/node_modules/.bin/vite[m
+[1mdeleted file mode 100644[m
+[1mindex 014463f..0000000[m
+[1m--- a/verdulista-react/node_modules/.bin/vite[m
+[1m+++ /dev/null[m
+[36m@@ -1,16 +0,0 @@[m
+[31m-#!/bin/sh[m
+[31m-basedir=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")[m
+[31m-[m
+[31m-case `uname` in[m
+[31m-    *CYGWIN*|*MINGW*|*MSYS*)[m
+[31m-        if command -v cygpath > /dev/null 2>&1; then[m
+[31m-            basedir=`cygpath -w "$basedir"`[m
+[31m-        fi[m
+[31m-    ;;[m
+[31m-esac[m
+[31m-[m
+[31m-if [ -x "$basedir/node" ]; then[m
+[31m-  exec "$basedir/node"  "$basedir/../vite/bin/vite.js" "$@"[m
+[31m-else [m
+[31m-  exec node  "$basedir/../vite/bin/vite.js" "$@"[m
+[31m-fi[m
+[1mdiff --git a/verdulista-react/node_modules/.bin/vite b/verdulista-react/node_modules/.bin/vite[m
+[1mnew file mode 120000[m
+[1mindex 0000000..6d1e3be[m
+[1m--- /dev/null[m
+[1m+++ b/verdulista-react/node_modules/.bin/vite[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32m../vite/bin/vite.js[m
+\ No newline at end of file[m
+[1mdiff --git a/verdulista-react/node_modules/.bin/vite.cmd b/verdulista-react/node_modules/.bin/vite.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex f62e966..0000000[m
+[1m--- a/verdulista-react/node_modules/.bin/vite.cmd[m
+[1m+++ /dev/null[m
+[36m@@ -1,17 +0,0 @@[m
+[31m-@ECHO off[m
+[31m-GOTO start[m
+[31m-:find_dp0[m
+[31m-SET dp0=%~dp0[m
+[31m-EXIT /b[m
+[31m-:start[m
+[31m-SETLOCAL[m
+[31m-CALL :find_dp0[m
+[31m-[m
+[31m-IF EXIST "%dp0%\node.exe" ([m
+[31m-  SET "_prog=%dp0%\node.exe"[m
+[31m-) ELSE ([m
+[31m-  SET "_prog=node"[m
+[31m-  SET PATHEXT=%PATHEXT:;.JS;=;%[m
+[31m-)[m
+[31m-[m
+[31m-endLocal & goto #_undefined_# 2>NUL || title %COMSPEC% & "%_prog%"  "%dp0%\..\vite\bin\vite.js" %*[m
+[1mdiff --git a/verdulista-react/node_modules/.bin/vite.ps1 b/verdulista-react/node_modules/.bin/vite.ps1[m
+[1mdeleted file mode 100644[m
+[1mindex a7759bc..0000000[m
+[1m--- a/verdulista-react/node_modules/.bin/vite.ps1[m
+[1m+++ /dev/null[m
+[36m@@ -1,28 +0,0 @@[m
+[31m-#!/usr/bin/env pwsh[m
+[31m-$basedir=Split-Path $MyInvocation.MyCommand.Definition -Parent[m
+[31m-[m
+[31m-$exe=""[m
+[31m-if ($PSVersionTable.PSVersion -lt "6.0" -or $IsWindows) {[m
+[31m-  # Fix case when both the Windows and Linux builds of Node[m
+[31m-  # are installed in the same directory[m
+[31m-  $exe=".exe"[m
+[31m-}[m
+[31m-$ret=0[m
+[31m-if (Test-Path "$basedir/node$exe") {[m
+[31m-  # Support pipeline input[m
+[31m-  if ($MyInvocation.ExpectingInput) {[m
+[31m-    $input | & "$basedir/node$exe"  "$basedir/../vite/bin/vite.js" $args[m
+[31m-  } else {[m
+[31m-    & "$basedir/node$exe"  "$basedir/../vite/bin/vite.js" $args[m
+[31m-  }[m
+[31m-  $ret=$LASTEXITCODE[m
+[31m-} else {[m
+[31m-  # Support pipeline input[m
+[31m-  if ($MyInvocation.ExpectingInput) {[m
+[31m-    $input | & "node$exe"  "$basedir/../vite/bin/vite.js" $args[m
+[31m-  } else {[m
+[31m-    & "node$exe"  "$basedir/../vite/bin/vite.js" $args[m
+[31m-  }[m
+[31m-  $ret=$LASTEXITCODE[m
+[31m-}[m
+[31m-exit $ret[m
+[1mdiff --git a/verdulista-react/node_modules/.package-lock.json b/verdulista-react/node_modules/.package-lock.json[m
+[1mindex 3e57e34..0c49024 100644[m
+[1m--- a/verdulista-react/node_modules/.package-lock.json[m
+[1m+++ b/verdulista-react/node_modules/.package-lock.json[m
+[36m@@ -12,36 +12,26 @@[m
+         "node": ">=6.9.0"[m
+       }[m
+     },[m
+[31m-    "node_modules/@emnapi/wasi-threads": {[m
+[31m-      "version": "1.2.2",[m
+[31m-      "resolved": "https://registry.npmjs.org/@emnapi/wasi-threads/-/wasi-threads-1.2.2.tgz",[m
+[31m-      "integrity": "sha512-c95qOXkHdydNKhscBTebqEC1CVAZpyqOfVfBzQ1qgzyl3gfeldUjIggDbIZgDKsHLgnsM+igH7TJ/eAasaVuMA==",[m
+[31m-      "license": "MIT",[m
+[31m-      "optional": true,[m
+[31m-      "dependencies": {[m
+[31m-        "tslib": "^2.4.0"[m
+[31m-      }[m
+[31m-    },[m
+     "node_modules/@oxc-project/types": {[m
+[31m-      "version": "0.137.0",[m
+[31m-      "resolved": "https://registry.npmjs.org/@oxc-project/types/-/types-0.137.0.tgz",[m
+[31m-      "integrity": "sha512-WT+Gb24i8hmvo85AIv2oEYouEXkRlKAlT9WaCa3TfLgNCN+GhrJOGZuIlMouAh38Qe4QOx26eUOVsq70qXrywA==",[m
+[32m+[m[32m      "version": "0.139.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@oxc-project/types/-/types-0.139.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-r9gHphtCs+1M7J0pw6Sn/hh/Wpa/iQrOOkrNAlVLF/gHq+/CJmHIWKKUUhdWjcD6CIa8idarspCsASiXCXvFUw==",[m
+       "license": "MIT",[m
+       "funding": {[m
+         "url": "https://github.com/sponsors/Boshen"[m
+       }[m
+     },[m
+[31m-    "node_modules/@rolldown/binding-win32-x64-msvc": {[m
+[31m-      "version": "1.1.3",[m
+[31m-      "resolved": "https://registry.npmjs.org/@rolldown/binding-win32-x64-msvc/-/binding-win32-x64-msvc-1.1.3.tgz",[m
+[31m-      "integrity": "sha512-OL4OMk7UPXOeVGGd3qo5zJyPIljf4AFgk5QAkPPS+OoLuOOozhuaQGC18MxVTnw/06q93gShAJzlwnSCY9YtqA==",[m
+[32m+[m[32m    "node_modules/@rolldown/binding-linux-x64-gnu": {[m
+[32m+[m[32m      "version": "1.1.5",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/@rolldown/binding-linux-x64-gnu/-/binding-linux-x64-gnu-1.1.5.tgz",[m
+[32m+[m[32m      "integrity": "sha512-FjcpEKUyJygHgs1o50VYNvkt5+7Le/VEdYt0AkRpkL33MnyQfwr8l5mXwMmfmTbyMPr5vJLC+8/Gd9gXnwU1QQ==",[m
+       "cpu": [[m
+         "x64"[m
+       ],[m
+       "license": "MIT",[m
+       "optional": true,[m
+       "os": [[m
+[31m-        "win32"[m
+[32m+[m[32m        "linux"[m
+       ],[m
+       "engines": {[m
+         "node": "^20.19.0 || >=22.12.0"[m
+[36m@@ -173,9 +163,9 @@[m
+       }[m
+     },[m
+     "node_modules/dompurify": {[m
+[31m-      "version": "3.4.11",[m
+[31m-      "resolved": "https://registry.npmjs.org/dompurify/-/dompurify-3.4.11.tgz",[m
+[31m-      "integrity": "sha512-zhlUV12GsaRzMsf9q5M254YhA4+VuF0fG+QFqu6aYpoGlKtz+w8//jBcGVYBgQkR5GHjUomejY84AV+/uPbWdw==",[m
+[32m+[m[32m      "version": "3.4.12",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/dompurify/-/dompurify-3.4.12.tgz",[m
+[32m+[m[32m      "integrity": "sha512-zQvGet8Z2sWbQhCmfFz/T5QWH2oBmjnqK3qvOjaqaNLrLEF912WamU+ohnTp0TCep/MFVHpdJuCZEdFOdTnEFg==",[m
+       "license": "(MPL-2.0 OR Apache-2.0)",[m
+       "optional": true,[m
+       "optionalDependencies": {[m
+[36m@@ -289,17 +279,17 @@[m
+         "lightningcss-win32-x64-msvc": "1.32.0"[m
+       }[m
+     },[m
+[31m-    "node_modules/lightningcss-win32-x64-msvc": {[m
+[32m+[m[32m    "node_modules/lightningcss-linux-x64-gnu": {[m
+       "version": "1.32.0",[m
+[31m-      "resolved": "https://registry.npmjs.org/lightningcss-win32-x64-msvc/-/lightningcss-win32-x64-msvc-1.32.0.tgz",[m
+[31m-      "integrity": "sha512-Amq9B/SoZYdDi1kFrojnoqPLxYhQ4Wo5XiL8EVJrVsB8ARoC1PWW6VGtT0WKCemjy8aC+louJnjS7U18x3b06Q==",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/lightningcss-linux-x64-gnu/-/lightningcss-linux-x64-gnu-1.32.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-V7Qr52IhZmdKPVr+Vtw8o+WLsQJYCTd8loIfpDaMRWGUZfBOYEJeyJIkqGIDMZPwPx24pUMfwSxxI8phr/MbOA==",[m
+       "cpu": [[m
+         "x64"[m
+       ],[m
+       "license": "MPL-2.0",[m
+       "optional": true,[m
+       "os": [[m
+[31m-        "win32"[m
+[32m+[m[32m        "linux"[m
+       ],[m
+       "engines": {[m
+         "node": ">= 12.0.0"[m
+[36m@@ -310,9 +300,9 @@[m
+       }[m
+     },[m
+     "node_modules/lucide-react": {[m
+[31m-      "version": "1.21.0",[m
+[31m-      "resolved": "https://registry.npmjs.org/lucide-react/-/lucide-react-1.21.0.tgz",[m
+[31m-      "integrity": "sha512-reEZMXq8Qdd5jg5XYkQ5TR1fB/GiQ7ih4vcrthYDtgjSDwh0i6/YLiGjsWsIwgN49gpAnd4J2elSNzncMEEUUQ==",[m
+[32m+[m[32m      "version": "1.24.0",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/lucide-react/-/lucide-react-1.24.0.tgz",[m
+[32m+[m[32m      "integrity": "sha512-YT6mBD8lGKkg4nM39enlm94/sfJIiW0YKUT60fBy4YK8tai31ylg1VhGNWxkpSKHo9UagfnZqwIff3HTDQwXeA==",[m
+       "license": "ISC",[m
+       "peerDependencies": {[m
+         "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0"[m
+[36m@@ -325,9 +315,9 @@[m
+       "license": "MIT"[m
+     },[m
+     "node_modules/nanoid": {[m
+[31m-      "version": "3.3.15",[m
+[31m-      "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.15.tgz",[m
+[31m-      "integrity": "sha512-y7Wygv/7mEOvxTuEQDB8StXdMRBWf1kR/tlhAzBRUFkB2jfcLOAxO/SHmOO2zgz1pVgK29/kyupn059/bCHdjA==",[m
+[32m+[m[32m      "version": "3.3.16",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.16.tgz",[m
+[32m+[m[32m      "integrity": "sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==",[m
+       "funding": [[m
+         {[m
+           "type": "github",[m
+[36m@@ -372,11 +362,10 @@[m
+       "license": "ISC"[m
+     },[m
+     "node_modules/picomatch": {[m
+[31m-      "version": "4.0.4",[m
+[31m-      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-4.0.4.tgz",[m
+[31m-      "integrity": "sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==",[m
+[32m+[m[32m      "version": "4.0.5",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-4.0.5.tgz",[m
+[32m+[m[32m      "integrity": "sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A==",[m
+       "license": "MIT",[m
+[31m-      "peer": true,[m
+       "engines": {[m
+         "node": ">=12"[m
+       },[m
+[36m@@ -385,9 +374,9 @@[m
+       }[m
+     },[m
+     "node_modules/postcss": {[m
+[31m-      "version": "8.5.15",[m
+[31m-      "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.5.15.tgz",[m
+[31m-      "integrity": "sha512-FfR8sjd4em2T6fb3I2MwAJU7HWVMr9zba+enmQeeWFfCbm+UOC/0X4DS8XtpUTMwWMGbjKYP7xjfNekzyGmB3A==",[m
+[32m+[m[32m      "version": "8.5.19",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.5.19.tgz",[m
+[32m+[m[32m      "integrity": "sha512-Mz8SaolMd8nB+G13WkORcxQKHZ/NE4xXevtkJHVuG+guo9/wYKlIMTKAqGdEmYOXR2ijPjTYNHssizdaVSUNdQ==",[m
+       "funding": [[m
+         {[m
+           "type": "opencollective",[m
+[36m@@ -427,7 +416,6 @@[m
+       "resolved": "https://registry.npmjs.org/react/-/react-19.2.7.tgz",[m
+       "integrity": "sha512-HNe9WslTbXmFK8o8cmwgAeJFSBvt1bPdHCVKtaaV+WlAN36mpT4hcRpwbf3fY56ar2oIXzsBpOAiIRHAdY0OlQ==",[m
+       "license": "MIT",[m
+[31m-      "peer": true,[m
+       "engines": {[m
+         "node": ">=0.10.0"[m
+       }[m
+[36m@@ -475,12 +463,12 @@[m
+       }[m
+     },[m
+     "node_modules/rolldown": {[m
+[31m-      "version": "1.1.3",[m
+[31m-      "resolved": "https://registry.npmjs.org/rolldown/-/rolldown-1.1.3.tgz",[m
+[31m-      "integrity": "sha512-1F1eEtUBtFvcGm1HQ9TiUIUHPQG7mSAODrhIzjxoUEFuo8OcbrGLiVLkevNgj84TE4lnHvnumwFjhJO5Eu135g==",[m
+[32m+[m[32m      "version": "1.1.5",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/rolldown/-/rolldown-1.1.5.tgz",[m
+[32m+[m[32m      "integrity": "sha512-t9z29cJjXf/vxQ8dyhCSpt6H6aSwHTk8cT5I3iy6SMXuFpk5mB6PL6XfC8PCwrPTx93udwKUm9HRteAlTGBLiA==",[m
+       "license": "MIT",[m
+       "dependencies": {[m
+[31m-        "@oxc-project/types": "=0.137.0",[m
+[32m+[m[32m        "@oxc-project/types": "=0.139.0",[m
+         "@rolldown/pluginutils": "^1.0.0"[m
+       },[m
+       "bin": {[m
+[36m@@ -490,21 +478,21 @@[m
+         "node": "^20.19.0 || >=22.12.0"[m
+       },[m
+       "optionalDependencies": {[m
+[31m-        "@rolldown/binding-android-arm64": "1.1.3",[m
+[31m-        "@rolldown/binding-darwin-arm64": "1.1.3",[m
+[31m-        "@rolldown/binding-darwin-x64": "1.1.3",[m
+[31m-        "@rolldown/binding-freebsd-x64": "1.1.3",[m
+[31m-        "@rolldown/binding-linux-arm-gnueabihf": "1.1.3",[m
+[31m-        "@rolldown/binding-linux-arm64-gnu": "1.1.3",[m
+[31m-        "@rolldown/binding-linux-arm64-musl": "1.1.3",[m
+[31m-        "@rolldown/binding-linux-ppc64-gnu": "1.1.3",[m
+[31m-        "@rolldown/binding-linux-s390x-gnu": "1.1.3",[m
+[31m-        "@rolldown/binding-linux-x64-gnu": "1.1.3",[m
+[31m-        "@rolldown/binding-linux-x64-musl": "1.1.3",[m
+[31m-        "@rolldown/binding-openharmony-arm64": "1.1.3",[m
+[31m-        "@rolldown/binding-wasm32-wasi": "1.1.3",[m
+[31m-        "@rolldown/binding-win32-arm64-msvc": "1.1.3",[m
+[31m-        "@rolldown/binding-win32-x64-msvc": "1.1.3"[m
+[32m+[m[32m        "@rolldown/binding-android-arm64": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-darwin-arm64": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-darwin-x64": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-freebsd-x64": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-linux-arm-gnueabihf": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-linux-arm64-gnu": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-linux-arm64-musl": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-linux-ppc64-gnu": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-linux-s390x-gnu": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-linux-x64-gnu": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-linux-x64-musl": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-openharmony-arm64": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-wasm32-wasi": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-win32-arm64-msvc": "1.1.5",[m
+[32m+[m[32m        "@rolldown/binding-win32-x64-msvc": "1.1.5"[m
+       }[m
+     },[m
+     "node_modules/scheduler": {[m
+[36m@@ -567,13 +555,6 @@[m
+         "url": "https://github.com/sponsors/SuperchupuDev"[m
+       }[m
+     },[m
+[31m-    "node_modules/tslib": {[m
+[31m-      "version": "2.8.1",[m
+[31m-      "resolved": "https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz",[m
+[31m-      "integrity": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==",[m
+[31m-      "license": "0BSD",[m
+[31m-      "optional": true[m
+[31m-    },[m
+     "node_modules/utrie": {[m
+       "version": "1.0.2",[m
+       "resolved": "https://registry.npmjs.org/utrie/-/utrie-1.0.2.tgz",[m
+[36m@@ -584,16 +565,15 @@[m
+       }[m
+     },[m
+     "node_modules/vite": {[m
+[31m-      "version": "8.1.0",[m
+[31m-      "resolved": "https://registry.npmjs.org/vite/-/vite-8.1.0.tgz",[m
+[31m-      "integrity": "sha512-BuJcQK/56NQTWDGn4ABea3q4SSBdNPWwNZKTkkUpcMPnLoquSYH8llRtSUIgoL1KSCpHt5eghLShn50mH36y7Q==",[m
+[32m+[m[32m      "version": "8.1.5",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/vite/-/vite-8.1.5.tgz",[m
+[32m+[m[32m      "integrity": "sha512-7ULLwsCdYx/nRyrpiEwvqb5TFHrMVZyBt+rg/OAXT7rgj/z+DtTDyKFeLAdDkubDVDKD8jOsndmy7m55XcfUsw==",[m
+       "license": "MIT",[m
+[31m-      "peer": true,[m
+       "dependencies": {[m
+         "lightningcss": "^1.32.0",[m
+[31m-        "picomatch": "^4.0.4",[m
+[31m-        "postcss": "^8.5.15",[m
+[31m-        "rolldown": "~1.1.2",[m
+[32m+[m[32m        "picomatch": "^4.0.5",[m
+[32m+[m[32m        "postcss": "^8.5.17",[m
+[32m+[m[32m        "rolldown": "~1.1.5",[m
+         "tinyglobby": "^0.2.17"[m
+       },[m
+       "bin": {[m
+[1mdiff --git a/verdulista-react/node_modules/.vite/deps/_metadata.json b/verdulista-react/node_modules/.vite/deps/_metadata.json[m
+[1mindex 7dbdc25..9169736 100644[m
+[1m--- a/verdulista-react/node_modules/.vite/deps/_metadata.json[m
+[1m+++ b/verdulista-react/node_modules/.vite/deps/_metadata.json[m
+[36m@@ -1,59 +1,59 @@[m
+ {[m
+[31m-  "hash": "dd05b89d",[m
+[31m-  "configHash": "65984cf9",[m
+[31m-  "lockfileHash": "395e538f",[m
+[31m-  "browserHash": "9023621a",[m
+[32m+[m[32m  "hash": "314ea896",[m
+[32m+[m[32m  "configHash": "08f31d59",[m
+[32m+[m[32m  "lockfileHash": "a303fb88",[m
+[32m+[m[32m  "browserHash": "ea4bfa4b",[m
+   "optimized": {[m
+     "html2canvas": {[m
+       "src": "../../html2canvas/dist/html2canvas.js",[m
+       "file": "html2canvas.js",[m
+[31m-      "fileHash": "0df5dfe7",[m
+[32m+[m[32m      "fileHash": "04d4c3a8",[m
+       "needsInterop": true[m
+     },[m
+     "jspdf": {[m
+       "src": "../../jspdf/dist/jspdf.es.min.js",[m
+       "file": "jspdf.js",[m
+[31m-      "fileHash": "b6b40d60",[m
+[32m+[m[32m      "fileHash": "98419bde",[m
+       "needsInterop": false[m
+     },[m
+     "lucide-react": {[m
+       "src": "../../lucide-react/dist/esm/lucide-react.mjs",[m
+       "file": "lucide-react.js",[m
+[31m-      "fileHash": "788ad960",[m
+[32m+[m[32m      "fileHash": "e2b41718",[m
+       "needsInterop": false[m
+     },[m
+     "react-dom/client": {[m
+       "src": "../../react-dom/client.js",[m
+       "file": "react-dom_client.js",[m
+[31m-      "fileHash": "50d65c1a",[m
+[32m+[m[32m      "fileHash": "db1471e6",[m
+       "needsInterop": true[m
+     },[m
+     "react-share": {[m
+       "src": "../../react-share/dist/index.js",[m
+       "file": "react-share.js",[m
+[31m-      "fileHash": "07c955de",[m
+[32m+[m[32m      "fileHash": "48d3c4f7",[m
+       "needsInterop": false[m
+     },[m
+     "react": {[m
+       "src": "../../react/index.js",[m
+       "file": "react.js",[m
+[31m-      "fileHash": "d55ee72e",[m
+[32m+[m[32m      "fileHash": "3a999683",[m
+       "needsInterop": true[m
+     },[m
+     "react/jsx-dev-runtime": {[m
+       "src": "../../react/jsx-dev-runtime.js",[m
+       "file": "react_jsx-dev-runtime.js",[m
+[31m-      "fileHash": "0c67fcb0",[m
+[32m+[m[32m      "fileHash": "5ab5c2a4",[m
+       "needsInterop": true[m
+     }[m
+   },[m
+   "chunks": {[m
+[31m-    "index.es-DIdV_DvX": {[m
+[31m-      "file": "index.es-DIdV_DvX.js",[m
+[32m+[m[32m    "index.es-BckNZC-T": {[m
+[32m+[m[32m      "file": "index.es-BckNZC-T.js",[m
+       "isDynamicEntry": true[m
+     },[m
+[31m-    "purify.es-Bfx81M_8": {[m
+[31m-      "file": "purify.es-Bfx81M_8.js",[m
+[32m+[m[32m    "purify.es-B5YO6vAB": {[m
+[32m+[m[32m      "file": "purify.es-B5YO6vAB.js",[m
+       "isDynamicEntry": true[m
+     },[m
+     "rolldown-runtime-B-1-B7_t": {[m
+[1mdiff --git a/verdulista-react/node_modules/.vite/deps/index.es-DIdV_DvX.js b/verdulista-react/node_modules/.vite/deps/index.es-BckNZC-T.js[m
+[1msimilarity index 99%[m
+[1mrename from verdulista-react/node_modules/.vite/deps/index.es-DIdV_DvX.js[m
+[1mrename to verdulista-react/node_modules/.vite/deps/index.es-BckNZC-T.js[m
+[1mindex 1e75afc..d987da1 100644[m
+[1m--- a/verdulista-react/node_modules/.vite/deps/index.es-DIdV_DvX.js[m
+[1m+++ b/verdulista-react/node_modules/.vite/deps/index.es-BckNZC-T.js[m
+[36m@@ -182,7 +182,8 @@[m [mvar require_environment_v8_version = /* @__PURE__ */ __commonJSMin(((exports, mo[m
+ 	var Deno = globalThis.Deno;[m
+ 	var versions = process && process.versions || Deno && Deno.version;[m
+ 	var v8 = versions && versions.v8;[m
+[31m-	var match, version;[m
+[32m+[m	[32mvar match;[m
+[32m+[m	[32mvar version;[m
+ 	if (v8) {[m
+ 		match = v8.split(".");[m
+ 		version = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);[m
+[36m@@ -589,7 +590,9 @@[m [mvar require_internal_state = /* @__PURE__ */ __commonJSMin(((exports, module) =>[m
+ 	var OBJECT_ALREADY_INITIALIZED = "Object already initialized";[m
+ 	var TypeError = globalThis.TypeError;[m
+ 	var WeakMap = globalThis.WeakMap;[m
+[31m-	var set, get, has;[m
+[32m+[m	[32mvar set;[m
+[32m+[m	[32mvar get;[m
+[32m+[m	[32mvar has;[m
+ 	var enforce = function(it) {[m
+ 		return has(it) ? get(it) : set(it, {});[m
+ 	};[m
+[36m@@ -1241,7 +1244,10 @@[m [mvar require_task = /* @__PURE__ */ __commonJSMin(((exports, module) => {[m
+ 	var counter = 0;[m
+ 	var queue = {};[m
+ 	var ONREADYSTATECHANGE = "onreadystatechange";[m
+[31m-	var $location, defer, channel, port;[m
+[32m+[m	[32mvar $location;[m
+[32m+[m	[32mvar defer;[m
+[32m+[m	[32mvar channel;[m
+[32m+[m	[32mvar port;[m
+ 	fails(function() {[m
+ 		$location = globalThis.location;[m
+ 	});[m
+[36m@@ -1375,7 +1381,11 @@[m [mvar require_microtask = /* @__PURE__ */ __commonJSMin(((exports, module) => {[m
+ 	var process = globalThis.process;[m
+ 	var Promise = globalThis.Promise;[m
+ 	var microtask = safeGetBuiltIn("queueMicrotask");[m
+[31m-	var notify, toggle, node, promise, then;[m
+[32m+[m	[32mvar notify;[m
+[32m+[m	[32mvar toggle;[m
+[32m+[m	[32mvar node;[m
+[32m+[m	[32mvar promise;[m
+[32m+[m	[32mvar then;[m
+ 	if (!microtask) {[m
+ 		var queue = new Queue();[m
+ 		var flush = function() {[m
+[36m@@ -1558,7 +1568,10 @@[m [mvar require_es_promise_constructor = /* @__PURE__ */ __commonJSMin((() => {[m
+ 	var REJECTED = 2;[m
+ 	var HANDLED = 1;[m
+ 	var UNHANDLED = 2;[m
+[31m-	var Internal, OwnPromiseCapability, PromiseWrapper, nativeThen;[m
+[32m+[m	[32mvar Internal;[m
+[32m+[m	[32mvar OwnPromiseCapability;[m
+[32m+[m	[32mvar PromiseWrapper;[m
+[32m+[m	[32mvar nativeThen;[m
+ 	var isThenable = function(it) {[m
+ 		var then;[m
+ 		return isObject(it) && isCallable(then = it.then) ? then : false;[m
+[36m@@ -2850,7 +2863,9 @@[m [mvar require_iterators_core = /* @__PURE__ */ __commonJSMin(((exports, module) =>[m
+ 	var IS_PURE = require_is_pure();[m
+ 	var ITERATOR = wellKnownSymbol("iterator");[m
+ 	var BUGGY_SAFARI_ITERATORS = false;[m
+[31m-	var IteratorPrototype, PrototypeOfArrayIteratorPrototype, arrayIterator;[m
+[32m+[m	[32mvar IteratorPrototype;[m
+[32m+[m	[32mvar PrototypeOfArrayIteratorPrototype;[m
+[32m+[m	[32mvar arrayIterator;[m
+ 	if ([].keys) {[m
+ 		arrayIterator = [].keys();[m
+ 		if (!("next" in arrayIterator)) BUGGY_SAFARI_ITERATORS = true;[m
+[36m@@ -3346,7 +3361,12 @@[m [mvar require_performance_now = /* @__PURE__ */ __commonJSMin(((exports, module) =[m
+ //#endregion[m
+ //#region node_modules/raf/index.js[m
+ var require_raf = /* @__PURE__ */ __commonJSMin(((exports, module) => {[m
+[31m-	var now = require_performance_now(), root = typeof window === "undefined" ? global : window, vendors = ["moz", "webkit"], suffix = "AnimationFrame", raf = root["request" + suffix], caf = root["cancel" + suffix] || root["cancelRequest" + suffix];[m
+[32m+[m	[32mvar now = require_performance_now();[m
+[32m+[m	[32mvar root = typeof window === "undefined" ? global : window;[m
+[32m+[m	[32mvar vendors = ["moz", "webkit"];[m
+[32m+[m	[32mvar suffix = "AnimationFrame";[m
+[32m+[m	[32mvar raf = root["request" + suffix];[m
+[32m+[m	[32mvar caf = root["cancel" + suffix] || root["cancelRequest" + suffix];[m
+ 	for (var i = 0; !raf && i < vendors.length; i++) {[m
+ 		raf = root[vendors[i] + "Request" + suffix];[m
+ 		caf = root[vendors[i] + "Cancel" + suffix] || root[vendors[i] + "CancelRequest" + suffix];[m
+[36m@@ -3836,7 +3856,8 @@[m [mfunction s(t, r, e) {[m
+ 	var n = Math.sqrt(i);[m
+ 	return [[(t * e + r * n) / (t * t + r * r), (r * e - t * n) / (t * t + r * r)], [(t * e - r * n) / (t * t + r * r), (r * e + t * n) / (t * t + r * r)]];[m
+ }[m
+[31m-var u, h = Math.PI / 180;[m
+[32m+[m[32mvar u;[m
+[32m+[m[32mvar h = Math.PI / 180;[m
+ function c$1(t, r, e) {[m
+ 	return (1 - e) * t + e * r;[m
+ }[m
+[36m@@ -4015,7 +4036,8 @@[m [mfunction m$1(t, r, e, i, a) {[m
+ 		return c.minX = Infinity, c.maxX = -Infinity, c.minY = Infinity, c.maxY = -Infinity, c;[m
+ 	};[m
+ })(u || (u = {}));[m
+[31m-var O, l = function() {[m
+[32m+[m[32mvar O;[m
+[32m+[m[32mvar l = function() {[m
+ 	function t() {}[m
+ 	return t.prototype.round = function(t) {[m
+ 		return this.transform(u.ROUND(t));[m
+[36m@@ -4052,11 +4074,14 @@[m [mvar O, l = function() {[m
+ 	}, t.prototype.annotateArcs = function() {[m
+ 		return this.transform(u.ANNOTATE_ARCS());[m
+ 	}, t;[m
+[31m-}(), T = function(t) {[m
+[32m+[m[32m}();[m
+[32m+[m[32mvar T = function(t) {[m
+ 	return " " === t || "	" === t || "\r" === t || "\n" === t;[m
+[31m-}, v = function(t) {[m
+[32m+[m[32m};[m
+[32m+[m[32mvar v = function(t) {[m
+ 	return "0".charCodeAt(0) <= t.charCodeAt(0) && t.charCodeAt(0) <= "9".charCodeAt(0);[m
+[31m-}, f = function(t) {[m
+[32m+[m[32m};[m
+[32m+[m[32mvar f = function(t) {[m
+ 	function e() {[m
+ 		var r = t.call(this) || this;[m
+ 		return r.curNumber = "", r.curCommandType = -1, r.curCommandRelative = !1, r.canParseCommandOrComma = !0, r.curNumberHasExp = !1, r.curNumberHasExpDigits = !1, r.curNumberHasDecimal = !1, r.curArgs = [], r;[m
+[36m@@ -4164,7 +4189,8 @@[m [mvar O, l = function() {[m
+ 			return e;[m
+ 		} } });[m
+ 	}, e;[m
+[31m-}(l), _ = function(t) {[m
+[32m+[m[32m}(l);[m
+[32m+[m[32mvar _ = function(t) {[m
+ 	function i(r) {[m
+ 		var e = t.call(this) || this;[m
+ 		return e.commands = "string" == typeof r ? i.parse(r) : r, e;[m
+[36m@@ -4186,7 +4212,8 @@[m [mvar O, l = function() {[m
+ 		var r = new f(), e = [];[m
+ 		return r.parse(t, e), r.finish(e), e;[m
+ 	}, i.CLOSE_PATH = 1, i.MOVE_TO = 2, i.HORIZ_LINE_TO = 4, i.VERT_LINE_TO = 8, i.LINE_TO = 16, i.CURVE_TO = 32, i.SMOOTH_CURVE_TO = 64, i.QUAD_TO = 128, i.SMOOTH_QUAD_TO = 256, i.ARC = 512, i.LINE_COMMANDS = i.LINE_TO | i.HORIZ_LINE_TO | i.VERT_LINE_TO, i.DRAWING_COMMANDS = i.HORIZ_LINE_TO | i.VERT_LINE_TO | i.LINE_TO | i.CURVE_TO | i.SMOOTH_CURVE_TO | i.QUAD_TO | i.SMOOTH_QUAD_TO | i.ARC, i;[m
+[31m-}(l), N = ((O = {})[_.MOVE_TO] = 2, O[_.LINE_TO] = 2, O[_.HORIZ_LINE_TO] = 1, O[_.VERT_LINE_TO] = 1, O[_.CLOSE_PATH] = 0, O[_.QUAD_TO] = 4, O[_.SMOOTH_QUAD_TO] = 2, O[_.CURVE_TO] = 6, O[_.SMOOTH_CURVE_TO] = 4, O[_.ARC] = 7, O);[m
+[32m+[m[32m}(l);[m
+[32m+[m[32mvar N = ((O = {})[_.MOVE_TO] = 2, O[_.LINE_TO] = 2, O[_.HORIZ_LINE_TO] = 1, O[_.VERT_LINE_TO] = 1, O[_.CLOSE_PATH] = 0, O[_.QUAD_TO] = 4, O[_.SMOOTH_QUAD_TO] = 2, O[_.CURVE_TO] = 6, O[_.SMOOTH_CURVE_TO] = 4, O[_.ARC] = 7, O);[m
+ //#endregion[m
+ //#region node_modules/core-js/modules/es.regexp.to-string.js[m
+ var PROPER_FUNCTION_NAME = require_function_name().PROPER;[m
+[36m@@ -9088,7 +9115,8 @@[m [mvar Canvg = class Canvg {[m
+ 		var _arguments = arguments;[m
+ 		return _asyncToGenerator(function* () {[m
+ 			var options = _arguments.length > 2 && _arguments[2] !== void 0 ? _arguments[2] : {};[m
+[31m-			return new Canvg(ctx, yield new Parser(options).parse(svg), options);[m
+[32m+[m			[32mvar svgDocument = yield new Parser(options).parse(svg);[m
+[32m+[m			[32mreturn new Canvg(ctx, svgDocument, options);[m
+ 		})();[m
+ 	}[m
+ 	/**[m
+[36m@@ -9100,7 +9128,8 @@[m [mvar Canvg = class Canvg {[m
+ 	*/[m
+ 	static fromString(ctx, svg) {[m
+ 		var options = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};[m
+[31m-		return new Canvg(ctx, new Parser(options).parseFromString(svg), options);[m
+[32m+[m		[32mvar svgDocument = new Parser(options).parseFromString(svg);[m
+[32m+[m		[32mreturn new Canvg(ctx, svgDocument, options);[m
+ 	}[m
+ 	/**[m
+ 	* Create new Canvg instance with inherited options.[m
+[1mdiff --git a/verdulista-react/node_modules/.vite/deps/index.es-DIdV_DvX.js.map b/verdulista-react/node_modules/.vite/deps/index.es-BckNZC-T.js.map[m
+[1msimilarity index 71%[m
+[1mrename from verdulista-react/node_modules/.vite/deps/index.es-DIdV_DvX.js.map[m
+[1mrename to verdulista-react/node_modules/.vite/deps/index.es-BckNZC-T.js.map[m
+[1mindex f4ef9f8..62aca92 100644[m
+[1m--- a/verdulista-react/node_modules/.vite/deps/index.es-DIdV_DvX.js.map[m
+[1m+++ b/verdulista-react/node_modules/.vite/deps/index.es-BckNZC-T.js.map[m
+[36m@@ -1 +1 @@[m
+[31m-{"version":3,"file":"index.es-DIdV_DvX.js","names":["call","uncurryThis","fixRegExpWellKnownSymbolLogic","anObject","isObject","toLength","toString","requireObjectCoercible","getMethod","advanceStringIndex","getRegExpFlags","regExpExec","stringIndexOf","call","uncurryThis","fixRegExpWellKnownSymbolLogic","fails","anObject","isObject","toLength","toString","requireObjectCoercible","advanceStringIndex","getMethod","getRegExpFlags","regExpExec","min","push","stringIndexOf","stringSlice","$","uncurryThis","getOwnPropertyDescriptor","toLength","toString","notARegExp","requireObjectCoercible","correctIsRegExpLogic","IS_PURE","stringSlice","min","CORRECT_IS_REGEXP_LOGIC","globalThis","_typeof","_typeof","$","arrayMethodIsStrict","$","uncurryThis","toLength","toString","notARegExp","requireObjectCoercible","correctIsRegExpLogic","min","uncurryThis","anObject","requireObjectCoercible","toString","getRegExpFlags","fails","stringIndexOf","$","$","uncurryThis","$","uncurryThis","c","m","RGBColor","SVGPathData"],"sources":["../../core-js/internals/global-this.js","../../core-js/internals/fails.js","../../core-js/internals/descriptors.js","../../core-js/internals/function-bind-native.js","../../core-js/internals/function-call.js","../../core-js/internals/object-property-is-enumerable.js","../../core-js/internals/create-property-descriptor.js","../../core-js/internals/function-uncurry-this.js","../../core-js/internals/classof-raw.js","../../core-js/internals/indexed-object.js","../../core-js/internals/is-null-or-undefined.js","../../core-js/internals/require-object-coercible.js","../../core-js/internals/to-indexed-object.js","../../core-js/internals/is-callable.js","../../core-js/internals/is-object.js","../../core-js/internals/get-built-in.js","../../core-js/internals/object-is-prototype-of.js","../../core-js/internals/environment-user-agent.js","../../core-js/internals/environment-v8-version.js","../../core-js/internals/symbol-constructor-detection.js","../../core-js/internals/use-symbol-as-uid.js","../../core-js/internals/is-symbol.js","../../core-js/internals/try-to-string.js","../../core-js/internals/a-callable.js","../../core-js/internals/get-method.js","../../core-js/internals/ordinary-to-primitive.js","../../core-js/internals/is-pure.js","../../core-js/internals/define-global-property.js","../../core-js/internals/shared-store.js","../../core-js/internals/shared.js","../../core-js/internals/to-object.js","../../core-js/internals/has-own-property.js","../../core-js/internals/uid.js","../../core-js/internals/well-known-symbol.js","../../core-js/internals/to-primitive.js","../../core-js/internals/to-property-key.js","../../core-js/internals/document-create-element.js","../../core-js/internals/ie8-dom-define.js","../../core-js/internals/object-get-own-property-descriptor.js","../../core-js/internals/v8-prototype-define-bug.js","../../core-js/internals/an-object.js","../../core-js/internals/object-define-property.js","../../core-js/internals/create-non-enumerable-property.js","../../core-js/internals/function-name.js","../../core-js/internals/inspect-source.js","../../core-js/internals/weak-map-basic-detection.js","../../core-js/internals/shared-key.js","../../core-js/internals/hidden-keys.js","../../core-js/internals/internal-state.js","../../core-js/internals/make-built-in.js","../../core-js/internals/define-built-in.js","../../core-js/internals/math-trunc.js","../../core-js/internals/to-integer-or-infinity.js","../../core-js/internals/to-absolute-index.js","../../core-js/internals/to-length.js","../../core-js/internals/length-of-array-like.js","../../core-js/internals/array-includes.js","../../core-js/internals/object-keys-internal.js","../../core-js/internals/enum-bug-keys.js","../../core-js/internals/object-get-own-property-names.js","../../core-js/internals/object-get-own-property-symbols.js","../../core-js/internals/own-keys.js","../../core-js/internals/copy-constructor-properties.js","../../core-js/internals/is-forced.js","../../core-js/internals/export.js","../../core-js/internals/environment.js","../../core-js/internals/environment-is-node.js","../../core-js/internals/path.js","../../core-js/internals/function-uncurry-this-accessor.js","../../core-js/internals/is-possible-prototype.js","../../core-js/internals/a-possible-prototype.js","../../core-js/internals/object-set-prototype-of.js","../../core-js/internals/set-to-string-tag.js","../../core-js/internals/define-built-in-accessor.js","../../core-js/internals/set-species.js","../../core-js/internals/an-instance.js","../../core-js/internals/to-string-tag-support.js","../../core-js/internals/classof.js","../../core-js/internals/is-constructor.js","../../core-js/internals/a-constructor.js","../../core-js/internals/species-constructor.js","../../core-js/internals/function-apply.js","../../core-js/internals/function-uncurry-this-clause.js","../../core-js/internals/function-bind-context.js","../../core-js/internals/html.js","../../core-js/internals/array-slice.js","../../core-js/internals/validate-arguments-length.js","../../core-js/internals/environment-is-ios.js","../../core-js/internals/task.js","../../core-js/internals/safe-get-built-in.js","../../core-js/internals/queue.js","../../core-js/internals/environment-is-ios-pebble.js","../../core-js/internals/environment-is-webos-webkit.js","../../core-js/internals/microtask.js","../../core-js/internals/host-report-errors.js","../../core-js/internals/perform.js","../../core-js/internals/promise-native-constructor.js","../../core-js/internals/promise-constructor-detection.js","../../core-js/internals/new-promise-capability.js","../../core-js/modules/es.promise.constructor.js","../../core-js/internals/iterators.js","../../core-js/internals/is-array-iterator-method.js","../../core-js/internals/get-iterator-method.js","../../core-js/internals/get-iterator.js","../../core-js/internals/iterator-close.js","../../core-js/internals/iterate.js","../../core-js/internals/check-correctness-of-iteration.js","../../core-js/internals/promise-statics-incorrect-iteration.js","../../core-js/modules/es.promise.all.js","../../core-js/modules/es.promise.catch.js","../../core-js/modules/es.promise.race.js","../../core-js/modules/es.promise.reject.js","../../core-js/internals/promise-resolve.js","../../core-js/modules/es.promise.resolve.js","../../core-js/modules/es.promise.js","../../@babel/runtime/helpers/esm/asyncToGenerator.js","../../core-js/internals/to-string.js","../../core-js/internals/regexp-flags.js","../../core-js/internals/regexp-sticky-helpers.js","../../core-js/internals/object-keys.js","../../core-js/internals/object-define-properties.js","../../core-js/internals/object-create.js","../../core-js/internals/regexp-unsupported-dot-all.js","../../core-js/internals/regexp-unsupported-ncg.js","../../core-js/internals/regexp-exec.js","../../core-js/modules/es.regexp.exec.js","../../core-js/internals/fix-regexp-well-known-symbol-logic.js","../../core-js/internals/string-multibyte.js","../../core-js/internals/advance-string-index.js","../../core-js/internals/regexp-flags-detection.js","../../core-js/internals/regexp-get-flags.js","../../core-js/internals/regexp-exec-abstract.js","../../core-js/modules/es.string.match.js","../../core-js/internals/get-substitution.js","../../core-js/modules/es.string.replace.js","../../core-js/internals/is-regexp.js","../../core-js/internals/not-a-regexp.js","../../core-js/internals/correct-is-regexp-logic.js","../../core-js/modules/es.string.starts-with.js","../../core-js/internals/add-to-unscopables.js","../../core-js/internals/correct-prototype-getter.js","../../core-js/internals/object-get-prototype-of.js","../../core-js/internals/iterators-core.js","../../core-js/internals/iterator-create-constructor.js","../../core-js/internals/iterator-define.js","../../core-js/internals/create-iter-result-object.js","../../core-js/modules/es.array.iterator.js","../../core-js/internals/dom-iterables.js","../../core-js/internals/dom-token-list-prototype.js","../../core-js/modules/web.dom-collections.iterator.js","../../@babel/runtime/helpers/esm/toPrimitive.js","../../@babel/runtime/helpers/esm/toPropertyKey.js","../../@babel/runtime/helpers/esm/defineProperty.js","../../core-js/internals/array-reduce.js","../../core-js/internals/array-method-is-strict.js","../../core-js/modules/es.array.reduce.js","../../core-js/modules/es.string.ends-with.js","../../core-js/modules/es.string.split.js","../../performance-now/lib/performance-now.js","../../raf/index.js","../../core-js/internals/whitespaces.js","../../core-js/internals/string-trim.js","../../core-js/internals/string-trim-forced.js","../../core-js/modules/es.string.trim.js","../../rgbcolor/index.js","../../core-js/modules/es.array.index-of.js","../../core-js/modules/es.string.includes.js","../../core-js/internals/is-array.js","../../core-js/modules/es.array.reverse.js","../../svg-pathdata/lib/SVGPathData.module.js","../../core-js/modules/es.regexp.to-string.js","../../stackblur-canvas/dist/stackblur-es.js","../../canvg/lib/index.es.js"],"sourcesContent":["'use strict';\nvar check = function (it) {\n  return it && it.Math === Math && it;\n};\n\n// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028\nmodule.exports =\n  // eslint-disable-next-line es/no-global-this -- safe\n  check(typeof globalThis == 'object' && globalThis) ||\n  check(typeof window == 'object' && window) ||\n  // eslint-disable-next-line no-restricted-globals -- safe\n  check(typeof self == 'object' && self) ||\n  check(typeof global == 'object' && global) ||\n  check(typeof this == 'object' && this) ||\n  // eslint-disable-next-line no-new-func -- fallback\n  (function () { return this; })() || Function('return this')();\n","'use strict';\nmodule.exports = function (exec) {\n  try {\n    return !!exec();\n  } catch (error) {\n    return true;\n  }\n};\n","'use strict';\nvar fails = require('../internals/fails');\n\n// Detect IE8's incomplete defineProperty implementation\nmodule.exports = !fails(function () {\n  // eslint-disable-next-line es/no-object-defineproperty -- required for testing\n  return Object.defineProperty({}, 1, { get: function () { return 7; } })[1] !== 7;\n});\n","'use strict';\nvar fails = require('../internals/fails');\n\nmodule.exports = !fails(function () {\n  // eslint-disable-next-line es/no-function-prototype-bind -- safe\n  var test = function () { /* empty */ }.bind();\n  // eslint-disable-next-line no-prototype-builtins -- safe\n  return typeof test != 'function' || test.hasOwnProperty('prototype');\n});\n","'use strict';\nvar NATIVE_BIND = require('../internals/function-bind-native');\n\nvar call = Function.prototype.call;\n// eslint-disable-next-line es/no-function-prototype-bind -- safe\nmodule.exports = NATIVE_BIND ? call.bind(call) : function () {\n  return call.apply(call, arguments);\n};\n","'use strict';\nvar $propertyIsEnumerable = {}.propertyIsEnumerable;\n// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe\nvar getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;\n\n// Nashorn ~ JDK8 bug\nvar NASHORN_BUG = getOwnPropertyDescriptor && !$propertyIsEnumerable.call({ 1: 2 }, 1);\n\n// `Object.prototype.propertyIsEnumerable` method implementation\n// https://tc39.es/ecma262/#sec-object.prototype.propertyisenumerable\nexports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {\n  var descriptor = getOwnPropertyDescriptor(this, V);\n  return !!descriptor && descriptor.enumerable;\n} : $propertyIsEnumerable;\n","'use strict';\nmodule.exports = function (bitmap, value) {\n  return {\n    enumerable: !(bitmap & 1),\n    configurable: !(bitmap & 2),\n    writable: !(bitmap & 4),\n    value: value\n  };\n};\n","'use strict';\nvar NATIVE_BIND = require('../internals/function-bind-native');\n\nvar FunctionPrototype = Function.prototype;\nvar call = FunctionPrototype.call;\n// eslint-disable-next-line es/no-function-prototype-bind -- safe\nvar uncurryThisWithBind = NATIVE_BIND && FunctionPrototype.bind.bind(call, call);\n\nmodule.exports = NATIVE_BIND ? uncurryThisWithBind : function (fn) {\n  return function () {\n    return call.apply(fn, arguments);\n  };\n};\n","'use strict';\nvar uncurryThis = require('../internals/function-uncurry-this');\n\nvar toString = uncurryThis({}.toString);\nvar stringSlice = uncurryThis(''.slice);\n\nmodule.exports = function (it) {\n  return stringSlice(toString(it), 8, -1);\n};\n","'use strict';\nvar uncurryThis = require('../internals/function-uncurry-this');\nvar fails = require('../internals/fails');\nvar classof = require('../internals/classof-raw');\n\nvar $Object = Object;\nvar split = uncurryThis(''.split);\n\n// fallback for non-array-like ES3 and non-enumerable old V8 strings\nmodule.exports = fails(function () {\n  // throws an error in rhino, see https://github.com/mozilla/rhino/issues/346\n  // eslint-disable-next-line no-prototype-builtins -- safe\n  return !$Object('z').propertyIsEnumerable(0);\n}) ? function (it) {\n  return classof(it) === 'String' ? split(it, '') : $Object(it);\n} : $Object;\n","'use strict';\n// we can't use just `it == null` since of `document.all` special case\n// https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot-aec\nmodule.exports = function (it) {\n  return it === null || it === undefined;\n};\n","'use strict';\nvar isNullOrUndefined = require('../internals/is-null-or-undefined');\n\nvar $TypeError = TypeError;\n\n// `RequireObjectCoercible` abstract operation\n// https://tc39.es/ecma262/#sec-requireobjectcoercible\nmodule.exports = function (it) {\n  if (isNullOrUndefined(it)) throw new $TypeError(\"Can't call method on \" + it);\n  return it;\n};\n","'use strict';\n// toObject with fallback for non-array-like ES3 strings\nvar IndexedObject = require('../internals/indexed-object');\nvar requireObjectCoercible = require('../internals/require-object-coercible');\n\nmodule.exports = function (it) {\n  return IndexedObject(requireObjectCoercible(it));\n};\n","'use strict';\n// https://tc39.es/ecma262/#sec-IsHTMLDDA-internal-slot\nvar documentAll = typeof document == 'object' && document.all;\n\n// `IsCallable` abstract operation\n// https://tc39.es/ecma262/#sec-iscallable\n// eslint-disable-next-line unicorn/no-typeof-undefined -- required for testing\nmodule.exports = typeof documentAll == 'undefined' && documentAll !== undefined ? function (argument) {\n  return typeof argument == 'function' || argument === documentAll;\n} : function (argument) {\n  return typeof argument == 'function';\n};\n","'use strict';\nvar isCallable = require('../internals/is-callable');\n\nmodule.exports = function (it) {\n  return typeof it == 'object' ? it !== null : isCallable(it);\n};\n","'use strict';\nvar globalThis = require('../internals/global-this');\nvar isCallable = require('../internals/is-callable');\n\nvar aFunction = function (argument) {\n  return isCallable(argument) ? argument : undefined;\n};\n\nmodule.exports = function (namespace, method) {\n  return arguments.length < 2 ? aFunction(globalThis[namespace]) : globalThis[namespace] && globalThis[namespace][method];\n};\n","'use strict';\nvar uncurryThis = require('../internals/function-uncurry-this');\n\nmodule.exports = uncurryThis({}.isPrototypeOf);\n","'use strict';\nvar globalThis = require('../internals/global-this');\n\nvar navigator = globalThis.navigator;\nvar userAgent = navigator && navigator.userAgent;\n\nmodule.exports = userAgent ? String(userAgent) : '';\n","'use strict';\nvar globalThis = require('../internals/global-this');\nvar userAgent = require('../internals/environment-user-agent');\n\nvar process = globalThis.process;\nvar Deno = globalThis.Deno;\nvar versions = process && process.versions || Deno && Deno.version;\nvar v8 = versions && versions.v8;\nvar match, version;\n\nif (v8) {\n  match = v8.split('.');\n  // in old Chrome, versions of V8 isn't V8 = Chrome / 10\n  // but their correct versions are not interesting for us\n  version = match[0] > 0 && match[0] < 4 ? 1 : +(match[0] + match[1]);\n}\n\n// BrowserFS NodeJS `process` polyfill incorrectly set `.v8` to `0.0`\n// so check `userAgent` even if `.v8` exists, but 0\nif (!version && userAgent) {\n  match = userAgent.match(/Edge\\/(\\d+)/);\n  if (!match || match[1] >= 74) {\n    match = userAgent.match(/Chrome\\/(\\d+)/);\n    if (match) version = +match[1];\n  }\n}\n\nmodule.exports = version;\n","'use strict';\n/* eslint-disable es/no-symbol -- required for testing */\nvar V8_VERSION = require('../internals/environment-v8-version');\nvar fails = require('../internals/fails');\nvar globalThis = require('../internals/global-this');\n\nvar $String = globalThis.String;\n\n// eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing\nmodule.exports = !!Object.getOwnPropertySymbols && !fails(function () {\n  var symbol = Symbol('symbol detection');\n  // Chrome 38 Symbol has incorrect toString conversion\n  // `get-own-property-symbols` polyfill symbols converted to object are not Symbol instances\n  // nb: Do not call `String` directly to avoid this being optimized out to `symbol+''` which will,\n  // of course, fail.\n  return !$String(symbol) || !(Object(symbol) instanceof Symbol) ||\n    // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances\n    !Symbol.sham && V8_VERSION && V8_VERSION < 41;\n});\n","'use strict';\n/* eslint-disable es/no-symbol -- required for testing */\nvar NATIVE_SYMBOL = require('../internals/symbol-constructor-detection');\n\nmodule.exports = NATIVE_SYMBOL &&\n  !Symbol.sham &&\n  typeof Symbol.iterator == 'symbol';\n","'use strict';\nvar getBuiltIn = require('../internals/get-built-in');\nvar isCallable = require('../internals/is-callable');\nvar isPrototypeOf = require('../internals/object-is-prototype-of');\nvar USE_SYMBOL_AS_UID = require('../internals/use-symbol-as-uid');\n\nvar $Object = Object;\n\nmodule.exports = USE_SYMBOL_AS_UID ? function (it) {\n  return typeof it == 'symbol';\n} : function (it) {\n  var $Symbol = getBuiltIn('Symbol');\n  return isCallable($Symbol) && isPrototypeOf($Symbol.prototype, $Object(it));\n};\n","'use strict';\nvar $String = String;\n\nmodule.exports = function (argument) {\n  try {\n    return $String(argument);\n  } catch (error) {\n    return 'Object';\n  }\n};\n","'use strict';\nvar isCallable = require('../internals/is-callable');\nvar tryToString = require('../internals/try-to-string');\n\nvar $TypeError = TypeError;\n\n// `Assert: IsCallable(argument) is true`\nmodule.exports = function (argument) {\n  if (isCallable(argument)) return argument;\n  throw new $TypeError(tryToString(argument) + ' is not a function');\n};\n","'use strict';\nvar aCallable = require('../internals/a-callable');\nvar isNullOrUndefined = require('../internals/is-null-or-undefined');\n\n// `GetMethod` abstract operation\n// https://tc39.es/ecma262/#sec-getmethod\nmodule.exports = function (V, P) {\n  var func = V[P];\n  return isNullOrUndefined(func) ? undefined : aCallable(func);\n};\n","'use strict';\nvar call = require('../internals/function-call');\nvar isCallable = require('../internals/is-callable');\nvar isObject = require('../internals/is-object');\n\nvar $TypeError = TypeError;\n\n// `OrdinaryToPrimitive` abstract operation\n// https://tc39.es/ecma262/#sec-ordinarytoprimitive\nmodule.exports = function (input, pref) {\n  var fn, val;\n  if (pref === 'string' && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val;\n  if (isCallable(fn = input.valueOf) && !isObject(val = call(fn, input))) return val;\n  if (pref !== 'string' && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val;\n  throw new $TypeError(\"Can't convert object to primitive value\");\n};\n","'use strict';\nmodule.exports = false;\n","'use strict';\nvar globalThis = require('../internals/global-this');\n\n// eslint-disable-next-line es/no-object-defineproperty -- safe\nvar defineProperty = Object.defineProperty;\n\nmodule.exports = function (key, value) {\n  try {\n    defineProperty(globalThis, key, { value: value, configurable: true, writable: true });\n  } catch (error) {\n    globalThis[key] = value;\n  } return value;\n};\n","'use strict';\nvar IS_PURE = require('../internals/is-pure');\nvar globalThis = require('../internals/global-this');\nvar defineGlobalProperty = require('../internals/define-global-property');\n\nvar SHARED = '__core-js_shared__';\nvar store = module.exports = globalThis[SHARED] || defineGlobalProperty(SHARED, {});\n\n(store.versions || (store.versions = [])).push({\n  version: '3.49.0',\n  mode: IS_PURE ? 'pure' : 'global',\n  copyright: '© 2013–2025 Denis Pushkarev (zloirock.ru), 2025–2026 CoreJS Company (core-js.io). All rights reserved.',\n  license: 'https://github.com/zloirock/core-js/blob/v3.49.0/LICENSE',\n  source: 'https://github.com/zloirock/core-js'\n});\n","'use strict';\nvar store = require('../internals/shared-store');\n\nmodule.exports = function (key, value) {\n  return store[key] || (store[key] = value || {});\n};\n","'use strict';\nvar requireObjectCoercible = require('../internals/require-object-coercible');\n\nvar $Object = Object;\n\n// `ToObject` abstract operation\n// https://tc39.es/ecma262/#sec-toobject\nmodule.exports = function (argument) {\n  return $Object(requireObjectCoercible(argument));\n};\n","'use strict';\nvar uncurryThis = require('../internals/function-uncurry-this');\nvar toObject = require('../internals/to-object');\n\nvar hasOwnProperty = uncurryThis({}.hasOwnProperty);\n\n// `HasOwnProperty` abstract operation\n// https://tc39.es/ecma262/#sec-hasownproperty\n// eslint-disable-next-line es/no-object-hasown -- safe\nmodule.exports = Object.hasOwn || function hasOwn(it, key) {\n  return hasOwnProperty(toObject(it), key);\n};\n","'use strict';\nvar uncurryThis = require('../internals/function-uncurry-this');\n\nvar id = 0;\nvar postfix = Math.random();\nvar toString = uncurryThis(1.1.toString);\n\nmodule.exports = function (key) {\n  return 'Symbol(' + (key === undefined ? '' : key) + ')_' + toString(++id + postfix, 36);\n};\n","'use strict';\nvar globalThis = require('../internals/global-this');\nvar shared = require('../internals/shared');\nvar hasOwn = require('../internals/has-own-property');\nvar uid = require('../internals/uid');\nvar NATIVE_SYMBOL = require('../internals/symbol-constructor-detection');\nvar USE_SYMBOL_AS_UID = require('../internals/use-symbol-as-uid');\n\nvar Symbol = globalThis.Symbol;\nvar WellKnownSymbolsStore = shared('wks');\nvar createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol['for'] || Symbol : Symbol && Symbol.withoutSetter || uid;\n\nmodule.exports = function (name) {\n  if (!hasOwn(WellKnownSymbolsStore, name)) {\n    WellKnownSymbolsStore[name] = NATIVE_SYMBOL && hasOwn(Symbol, name)\n      ? Symbol[name]\n      : createWellKnownSymbol('Symbol.' + name);\n  } return WellKnownSymbolsStore[name];\n};\n","'use strict';\nvar call = require('../internals/function-call');\nvar isObject = require('../internals/is-object');\nvar isSymbol = require('../internals/is-symbol');\nvar getMethod = require('../internals/get-method');\nvar ordinaryToPrimitive = require('../internals/ordinary-to-primitive');\nvar wellKnownSymbol = require('../internals/well-known-symbol');\n\nvar $TypeError = TypeError;\nvar TO_PRIMITIVE = wellKnownSymbol('toPrimitive');\n\n// `ToPrimitive` abstract operation\n// https://tc39.es/ecma262/#sec-toprimitive\nmodule.exports = function (input, pref) {\n  if (!isObject(input) || isSymbol(input)) return input;\n  var exoticToPrim = getMethod(input, TO_PRIMITIVE);\n  var result;\n  if (exoticToPrim) {\n    if (pref === undefined) pref = 'default';\n    result = call(exoticToPrim, input, pref);\n    if (!isObject(result) || isSymbol(result)) return result;\n    throw new $TypeError(\"Can't convert object to primitive value\");\n  }\n  if (pref === undefined) pref = 'number';\n  return ordinaryToPrimitive(input, pref);\n};\n","'use strict';\nvar toPrimitive = require('../internals/to-primitive');\nvar isSymbol = require('../internals/is-symbol');\n\n// `ToPropertyKey` abstract operation\n// https://tc39.es/ecma262/#sec-topropertykey\nmodule.exports = function (argument) {\n  var key = toPrimitive(argument, 'string');\n  return isSymbol(key) ? key : key + '';\n};\n","'use strict';\nvar globalThis = require('../internals/global-this');\nvar isObject = require('../internals/is-object');\n\nvar document = globalThis.document;\n// typeof document.createElement is 'object' in old IE\nvar EXISTS = isObject(document) && isObject(document.createElement);\n\nmodule.exports = function (it) {\n  return EXISTS ? document.createElement(it) : {};\n};\n","'use strict';\nvar DESCRIPTORS = require('../internals/descriptors');\nvar fails = require('../internals/fails');\nvar createElement = require('../internals/document-create-element');\n\n// Thanks to IE8 for its funny defineProperty\nmodule.exports = !DESCRIPTORS && !fails(function () {\n  // eslint-disable-next-line es/no-object-defineproperty -- required for testing\n  return Object.defineProperty(createElement('div'), 'a', {\n    get: function () { return 7; }\n  }).a !== 7;\n});\n","'use strict';\nvar DESCRIPTORS = require('../internals/descriptors');\nvar call = require('../internals/function-call');\nvar propertyIsEnumerableModule = require('../internals/object-property-is-enumerable');\nvar createPropertyDescriptor = require('../internals/create-property-descriptor');\nvar toIndexedObject = require('../internals/to-indexed-object');\nvar toPropertyKey = require('../internals/to-property-key');\nvar hasOwn = require('../internals/has-own-property');\nvar IE8_DOM_DEFINE = require('../internals/ie8-dom-define');\n\n// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe\nvar $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;\n\n// `Object.getOwnPropertyDescriptor` method\n// https://tc39.es/ecma262/#sec-object.getownpropertydescriptor\nexports.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {\n  O = toIndexedObject(O);\n  P = toPropertyKey(P);\n  if (IE8_DOM_DEFINE) try {\n    return $getOwnPropertyDescriptor(O, P);\n  } catch (error) { /* empty */ }\n  if (hasOwn(O, P)) return createPropertyDescriptor(!call(propertyIsEnumerableModule.f, O, P), O[P]);\n};\n","'use strict';\nvar DESCRIPTORS = require('../internals/descriptors');\nvar fails = require('../internals/fails');\n\n// V8 ~ Chrome 36-\n// https://bugs.chromium.org/p/v8/issues/detail?id=3334\nmodule.exports = DESCRIPTORS && fails(function () {\n  // eslint-disable-next-line es/no-object-defineproperty -- required for testing\n  return Object.defineProperty(function () { /* empty */ }, 'prototype', {\n    value: 42,\n    writable: false\n  }).prototype !== 42;\n});\n","'use strict';\nvar isObject = require('../internals/is-object');\n\nvar $String = String;\nvar $TypeError = TypeError;\n\n// `Assert: Type(argument) is Object`\nmodule.exports = function (argument) {\n  if (isObject(argument)) return argument;\n  throw new $TypeError($String(argument) + ' is not an object');\n};\n","'use strict';\nvar DESCRIPTORS = require('../internals/descriptors');\nvar IE8_DOM_DEFINE = require('../internals/ie8-dom-define');\nvar V8_PROTOTYPE_DEFINE_BUG = require('../internals/v8-prototype-define-bug');\nvar anObject = require('../internals/an-object');\nvar toPropertyKey = require('../internals/to-property-key');\n\nvar $TypeError = TypeError;\n// eslint-disable-next-line es/no-object-defineproperty -- safe\nvar $defineProperty = Object.defineProperty;\n// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe\nvar $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;\nvar ENUMERABLE = 'enumerable';\nvar CONFIGURABLE = 'configurable';\nvar WRITABLE = 'writable';\n\n// `Object.defineProperty` method\n// https://tc39.es/ecma262/#sec-object.defineproperty\nexports.f = DESCRIPTORS ? V8_PROTOTYPE_DEFINE_BUG ? function defineProperty(O, P, Attributes) {\n  anObject(O);\n  P = toPropertyKey(P);\n  anObject(Attributes);\n  if (typeof O === 'function' && P === 'prototype' && 'value' in Attributes && WRITABLE in Attributes && !Attributes[WRITABLE]) {\n    var current = $getOwnPropertyDescriptor(O, P);\n    if (current && current[WRITABLE]) {\n      O[P] = Attributes.value;\n      Attributes = {\n        configurable: CONFIGURABLE in Attributes ? Attributes[CONFIGURABLE] : current[CONFIGURABLE],\n        enumerable: ENUMERABLE in Attributes ? Attributes[ENUMERABLE] : current[ENUMERABLE],\n        writable: false\n      };\n    }\n  } return $defineProperty(O, P, Attributes);\n} : $defineProperty : function defineProperty(O, P, Attributes) {\n  anObject(O);\n  P = toPropertyKey(P);\n  anObject(Attributes);\n  if (IE8_DOM_DEFINE) try {\n    return $defineProperty(O, P, Attributes);\n  } catch (error) { /* empty */ }\n  if ('get' in Attributes || 'set' in Attributes) throw new $TypeError('Accessors not supported');\n  if ('value' in Attributes) O[P] = Attributes.value;\n  return O;\n};\n","'use strict';\nvar DESCRIPTORS = require('../internals/descriptors');\nvar definePropertyModule = require('../internals/object-define-property');\nvar createPropertyDescriptor = require('../internals/create-property-descriptor');\n\nmodule.exports = DESCRIPTORS ? function (object, key, value) {\n  return definePropertyModule.f(object, key, createPropertyDescriptor(1, value));\n} : function (object, key, value) {\n  object[key] = value;\n  return object;\n};\n","'use strict';\nvar DESCRIPTORS = require('../internals/descriptors');\nvar hasOwn = require('../internals/has-own-property');\n\nvar FunctionPrototype = Function.prototype;\n// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe\nvar getDescriptor = DESCRIPTORS && Object.getOwnPropertyDescriptor;\n\nvar EXISTS = hasOwn(FunctionPrototype, 'name');\n// additional protection from minified / mangled / dropped function names\nvar PROPER = EXISTS && function something() { /* empty */ }.name === 'something';\nvar CONFIGURABLE = EXISTS && (!DESCRIPTORS || (DESCRIPTORS && getDescriptor(FunctionPrototype, 'name').configurable));\n\nmodule.exports = {\n  EXISTS: EXISTS,\n  PROPER: PROPER,\n  CONFIGURABLE: CONFIGURABLE\n};\n","'use strict';\nvar uncurryThis = require('../internals/function-uncurry-this');\nvar isCallable = require('../internals/is-callable');\nvar store = require('../internals/shared-store');\n\nvar functionToString = uncurryThis(Function.toString);\n\n// this helper broken in `core-js@3.4.1-3.4.4`, so we can't use `shared` helper\nif (!isCallable(store.inspectSource)) {\n  store.inspectSource = function (it) {\n    return functionToString(it);\n  };\n}\n\nmodule.exports = store.inspectSource;\n","'use strict';\nvar globalThis = require('../internals/global-this');\nvar isCallable = require('../internals/is-callable');\n\nvar WeakMap = globalThis.WeakMap;\n\nmodule.exports = isCallable(WeakMap) && /native code/.test(String(WeakMap));\n","'use strict';\nvar shared = require('../internals/shared');\nvar uid = require('../internals/uid');\n\nvar keys = shared('keys');\n\nmodule.exports = function (key) {\n  return keys[key] || (keys[key] = uid(key));\n};\n","'use strict';\nmodule.exports = {};\n","'use strict';\nvar NATIVE_WEAK_MAP = require('../internals/weak-map-basic-detection');\nvar globalThis = require('../internals/global-this');\nvar isObject = require('../internals/is-object');\nvar createNonEnumerableProperty = require('../internals/create-non-enumerable-property');\nvar hasOwn = require('../internals/has-own-property');\nvar shared = require('../internals/shared-store');\nvar sharedKey = require('../internals/shared-key');\nvar hiddenKeys = require('../internals/hidden-keys');\n\nvar OBJECT_ALREADY_INITIALIZED = 'Object already initialized';\nvar TypeError = globalThis.TypeError;\nvar WeakMap = globalThis.WeakMap;\nvar set, get, has;\n\nvar enforce = function (it) {\n  return has(it) ? get(it) : set(it, {});\n};\n\nvar getterFor = function (TYPE) {\n  return function (it) {\n    var state;\n    if (!isObject(it) || (state = get(it)).type !== TYPE) {\n      throw new TypeError('Incompatible receiver, ' + TYPE + ' required');\n    } return state;\n  };\n};\n\nif (NATIVE_WEAK_MAP || shared.state) {\n  var store = shared.state || (shared.state = new WeakMap());\n  /* eslint-disable no-self-assign -- prototype methods protection */\n  store.get = store.get;\n  store.has = store.has;\n  store.set = store.set;\n  /* eslint-enable no-self-assign -- prototype methods protection */\n  set = function (it, metadata) {\n    if (store.has(it)) throw new TypeError(OBJECT_ALREADY_INITIALIZED);\n    metadata.facade = it;\n    store.set(it, metadata);\n    return metadata;\n  };\n  get = function (it) {\n    return store.get(it) || {};\n  };\n  has = function (it) {\n    return store.has(it);\n  };\n} else {\n  var STATE = sharedKey('state');\n  hiddenKeys[STATE] = true;\n  set = function (it, metadata) {\n    if (hasOwn(it, STATE)) throw new TypeError(OBJECT_ALREADY_INITIALIZED);\n    metadata.facade = it;\n    createNonEnumerableProperty(it, STATE, metadata);\n    return metadata;\n  };\n  get = function (it) {\n    return hasOwn(it, STATE) ? it[STATE] : {};\n  };\n  has = function (it) {\n    return hasOwn(it, STATE);\n  };\n}\n\nmodule.exports = {\n  set: set,\n  get: get,\n  has: has,\n  enforce: enforce,\n  getterFor: getterFor\n};\n","'use strict';\nvar uncurryThis = require('../internals/function-uncurry-this');\nvar fails = require('../internals/fails');\nvar isCallable = require('../internals/is-callable');\nvar hasOwn = require('../internals/has-own-property');\nvar DESCRIPTORS = require('../internals/descriptors');\nvar CONFIGURABLE_FUNCTION_NAME = require('../internals/function-name').CONFIGURABLE;\nvar inspectSource = require('../internals/inspect-source');\nvar InternalStateModule = require('../internals/internal-state');\n\nvar enforceInternalState = InternalStateModule.enforce;\nvar getInternalState = InternalStateModule.get;\nvar $String = String;\n// eslint-disable-next-line es/no-object-defineproperty -- safe\nvar defineProperty = Object.defineProperty;\nvar stringSlice = uncurryThis(''.slice);\nvar replace = uncurryThis(''.replace);\nvar join = uncurryThis([].join);\n\nvar CONFIGURABLE_LENGTH = DESCRIPTORS && !fails(function () {\n  return defineProperty(function () { /* empty */ }, 'length', { value: 8 }).length !== 8;\n});\n\nvar TEMPLATE = String(String).split('String');\n\nvar makeBuiltIn = module.exports = function (value, name, options) {\n  if (stringSlice($String(name), 0, 7) === 'Symbol(') {\n    name = '[' + replace($String(name), /^Symbol\\(([^)]*)\\).*$/, '$1') + ']';\n  }\n  if (options && options.getter) name = 'get ' + name;\n  if (options && options.setter) name = 'set ' + name;\n  if (!hasOwn(value, 'name') || (CONFIGURABLE_FUNCTION_NAME && value.name !== name)) {\n    if (DESCRIPTORS) defineProperty(value, 'name', { value: name, configurable: true });\n    else value.name = name;\n  }\n  if (CONFIGURABLE_LENGTH && options && hasOwn(options, 'arity') && value.length !== options.arity) {\n    defineProperty(value, 'length', { value: options.arity });\n  }\n  try {\n    if (options && hasOwn(options, 'constructor') && options.constructor) {\n      if (DESCRIPTORS) defineProperty(value, 'prototype', { writable: false });\n    // in V8 ~ Chrome 53, prototypes of some methods, like `Array.prototype.values`, are non-writable\n    } else if (value.prototype) value.prototype = undefined;\n  } catch (error) { /* empty */ }\n  var state = enforceInternalState(value);\n  if (!hasOwn(state, 'source')) {\n    state.source = join(TEMPLATE, typeof name == 'string' ? name : '');\n  } return value;\n};\n\n// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative\n// eslint-disable-next-line no-extend-native -- required\nFunction.prototype.toString = makeBuiltIn(function toString() {\n  return isCallable(this) && getInternalState(this).source || inspectSource(this);\n}, 'toString');\n","'use strict';\nvar isCallable = require('../internals/is-callable');\nvar definePropertyModule = require('../internals/object-define-property');\nvar makeBuiltIn = require('../internals/make-built-in');\nvar defineGlobalProperty = require('../internals/define-global-property');\n\nmodule.exports = function (O, key, value, options) {\n  if (!options) options = {};\n  var simple = options.enumerable;\n  var name = options.name !== undefined ? options.name : key;\n  if (isCallable(value)) makeBuiltIn(value, name, options);\n  if (options.global) {\n    if (simple) O[key] = value;\n    else defineGlobalProperty(key, value);\n  } else {\n    try {\n      if (!options.unsafe) delete O[key];\n      else if (O[key]) simple = true;\n    } catch (error) { /* empty */ }\n    if (simple) O[key] = value;\n    else definePropertyModule.f(O, key, {\n      value: value,\n      enumerable: false,\n      configurable: !options.nonConfigurable,\n      writable: !options.nonWritable\n    });\n  } return O;\n};\n","'use strict';\nvar ceil = Math.ceil;\nvar floor = Math.floor;\n\n// `Math.trunc` method\n// https://tc39.es/ecma262/#sec-math.trunc\n// eslint-disable-next-line es/no-math-trunc -- safe\nmodule.exports = Math.trunc || function trunc(x) {\n  var n = +x;\n  return (n > 0 ? floor : ceil)(n);\n};\n","'use strict';\nvar trunc = require('../internals/math-trunc');\n\n// `ToIntegerOrInfinity` abstract operation\n// https://tc39.es/ecma262/#sec-tointegerorinfinity\nmodule.exports = function (argument) {\n  var number = +argument;\n  // eslint-disable-next-line no-self-compare -- NaN check\n  return number !== number || number === 0 ? 0 : trunc(number);\n};\n","'use strict';\nvar toIntegerOrInfinity = require('../internals/to-integer-or-infinity');\n\nvar max = Math.max;\nvar min = Math.min;\n\n// Helper for a popular repeating case of the spec:\n// Let integer be ? ToInteger(index).\n// If integer < 0, let result be max((length + integer), 0); else let result be min(integer, length).\nmodule.exports = function (index, length) {\n  var integer = toIntegerOrInfinity(index);\n  return integer < 0 ? max(integer + length, 0) : min(integer, length);\n};\n","'use strict';\nvar toIntegerOrInfinity = require('../internals/to-integer-or-infinity');\n\nvar min = Math.min;\n\n// `ToLength` abstract operation\n// https://tc39.es/ecma262/#sec-tolength\nmodule.exports = function (argument) {\n  var len = toIntegerOrInfinity(argument);\n  return len > 0 ? min(len, 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991\n};\n","'use strict';\nvar toLength = require('../internals/to-length');\n\n// `LengthOfArrayLike` abstract operation\n// https://tc39.es/ecma262/#sec-lengthofarraylike\nmodule.exports = function (obj) {\n  return toLength(obj.length);\n};\n","'use strict';\nvar toIndexedObject = require('../internals/to-indexed-object');\nvar toAbsoluteIndex = require('../internals/to-absolute-index');\nvar lengthOfArrayLike = require('../internals/length-of-array-like');\n\n// `Array.prototype.{ indexOf, includes }` methods implementation\nvar createMethod = function (IS_INCLUDES) {\n  return function ($this, el, fromIndex) {\n    var O = toIndexedObject($this);\n    var length = lengthOfArrayLike(O);\n    if (length === 0) return !IS_INCLUDES && -1;\n    var index = toAbsoluteIndex(fromIndex, length);\n    var value;\n    // Array#includes uses SameValueZero equality algorithm\n    // eslint-disable-next-line no-self-compare -- NaN check\n    if (IS_INCLUDES && el !== el) while (length > index) {\n      value = O[index++];\n      // eslint-disable-next-line no-self-compare -- NaN check\n      if (value !== value) return true;\n    // Array#indexOf ignores holes, Array#includes - not\n    } else for (;length > index; index++) {\n      if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;\n    } return !IS_INCLUDES && -1;\n  };\n};\n\nmodule.exports = {\n  // `Array.prototype.includes` method\n  // https://tc39.es/ecma262/#sec-array.prototype.includes\n  includes: createMethod(true),\n  // `Array.prototype.indexOf` method\n  // https://tc39.es/ecma262/#sec-array.prototype.indexof\n  indexOf: createMethod(false)\n};\n","'use strict';\nvar uncurryThis = require('../internals/function-uncurry-this');\nvar hasOwn = require('../internals/has-own-property');\nvar toIndexedObject = require('../internals/to-indexed-object');\nvar indexOf = require('../internals/array-includes').indexOf;\nvar hiddenKeys = require('../internals/hidden-keys');\n\nvar push = uncurryThis([].push);\n\nmodule.exports = function (object, names) {\n  var O = toIndexedObject(object);\n  var i = 0;\n  var result = [];\n  var key;\n  for (key in O) !hasOwn(hiddenKeys, key) && hasOwn(O, key) && push(result, key);\n  // Don't enum bug & hidden keys\n  while (names.length > i) if (hasOwn(O, key = names[i++])) {\n    ~indexOf(result, key) || push(result, key);\n  }\n  return result;\n};\n","'use strict';\n// IE8- don't enum bug keys\nmodule.exports = [\n  'constructor',\n  'hasOwnProperty',\n  'isPrototypeOf',\n  'propertyIsEnumerable',\n  'toLocaleString',\n  'toString',\n  'valueOf'\n];\n","'use strict';\nvar internalObjectKeys = require('../internals/object-keys-internal');\nvar enumBugKeys = require('../internals/enum-bug-keys');\n\nvar hiddenKeys = enumBugKeys.concat('length', 'prototype');\n\n// `Object.getOwnPropertyNames` method\n// https://tc39.es/ecma262/#sec-object.getownpropertynames\n// eslint-disable-next-line es/no-object-getownpropertynames -- safe\nexports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {\n  return internalObjectKeys(O, hiddenKeys);\n};\n","'use strict';\n// eslint-disable-next-line es/no-object-getownpropertysymbols -- safe\nexports.f = Object.getOwnPropertySymbols;\n","'use strict';\nvar getBuiltIn = require('../internals/get-built-in');\nvar uncurryThis = require('../internals/function-uncurry-this');\nvar getOwnPropertyNamesModule = require('../internals/object-get-own-property-names');\nvar getOwnPropertySymbolsModule = require('../internals/object-get-own-property-symbols');\nvar anObject = require('../internals/an-object');\n\nvar concat = uncurryThis([].concat);\n\n// all object keys, includes non-enumerable and symbols\nmodule.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {\n  var keys = getOwnPropertyNamesModule.f(anObject(it));\n  var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;\n  return getOwnPropertySymbols ? concat(keys, getOwnPropertySymbols(it)) : keys;\n};\n","'use strict';\nvar hasOwn = require('../internals/has-own-property');\nvar ownKeys = require('../internals/own-keys');\nvar getOwnPropertyDescriptorModule = require('../internals/object-get-own-property-descriptor');\nvar definePropertyModule = require('../internals/object-define-property');\n\nmodule.exports = function (target, source, exceptions) {\n  var keys = ownKeys(source);\n  var defineProperty = definePropertyModule.f;\n  var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;\n  for (var i = 0; i < keys.length; i++) {\n    var key = keys[i];\n    if (!hasOwn(target, key) && !(exceptions && hasOwn(exceptions, key))) {\n      defineProperty(target, key, getOwnPropertyDescriptor(source, key));\n    }\n  }\n};\n","'use strict';\nvar fails = require('../internals/fails');\nvar isCallable = require('../internals/is-callable');\n\nvar replacement = /#|\\.prototype\\./;\n\nvar isForced = function (feature, detection) {\n  var value = data[normalize(feature)];\n  return value === POLYFILL ? true\n    : value === NATIVE ? false\n    : isCallable(detection) ? fails(detection)\n    : !!detection;\n};\n\nvar normalize = isForced.normalize = function (string) {\n  return String(string).replace(replacement, '.').toLowerCase();\n};\n\nvar data = isForced.data = {};\nvar NATIVE = isForced.NATIVE = 'N';\nvar POLYFILL = isForced.POLYFILL = 'P';\n\nmodule.exports = isForced;\n","'use strict';\nvar globalThis = require('../internals/global-this');\nvar getOwnPropertyDescriptor = require('../internals/object-get-own-property-descriptor').f;\nvar createNonEnumerableProperty = require('../internals/create-non-enumerable-property');\nvar defineBuiltIn = require('../internals/define-built-in');\nvar defineGlobalProperty = require('../internals/define-global-property');\nvar copyConstructorProperties = require('../internals/copy-constructor-properties');\nvar isForced = require('../internals/is-forced');\n\n/*\n  options.target         - name of the target object\n  options.global         - target is the global object\n  options.stat           - export as static methods of target\n  options.proto          - export as prototype methods of target\n  options.real           - real prototype method for the `pure` version\n  options.forced         - export even if the native feature is available\n  options.bind           - bind methods to the target, required for the `pure` version\n  options.wrap           - wrap constructors to preventing global pollution, required for the `pure` version\n  options.unsafe         - use the simple assignment of property instead of delete + defineProperty\n  options.sham           - add a flag to not completely full polyfills\n  options.enumerable     - export as enumerable property\n  options.dontCallGetSet - prevent calling a getter on target\n  options.name           - the .name of the function if it does not match the key\n*/\nmodule.exports = function (options, source) {\n  var TARGET = options.target;\n  var GLOBAL = options.global;\n  var STATIC = options.stat;\n  var FORCED, target, key, targetProperty, sourceProperty, descriptor;\n  if (GLOBAL) {\n    target = globalThis;\n  } else if (STATIC) {\n    target = globalThis[TARGET] || defineGlobalProperty(TARGET, {});\n  } else {\n    target = globalThis[TARGET] && globalThis[TARGET].prototype;\n  }\n  if (target) for (key in source) {\n    sourceProperty = source[key];\n    if (options.dontCallGetSet) {\n      descriptor = getOwnPropertyDescriptor(target, key);\n      targetProperty = descriptor && descriptor.value;\n    } else targetProperty = target[key];\n    FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced);\n    // contained in target\n    if (!FORCED && targetProperty !== undefined) {\n      if (typeof sourceProperty == typeof targetProperty) continue;\n      copyConstructorProperties(sourceProperty, targetProperty);\n    }\n    // add a flag to not completely full polyfills\n    if (options.sham || (targetProperty && targetProperty.sham)) {\n      createNonEnumerableProperty(sourceProperty, 'sham', true);\n    }\n    defineBuiltIn(target, key, sourceProperty, options);\n  }\n};\n","'use strict';\n/* global Bun, Deno -- detection */\nvar globalThis = require('../internals/global-this');\nvar userAgent = require('../internals/environment-user-agent');\nvar classof = require('../internals/classof-raw');\n\nvar userAgentStartsWith = function (string)
