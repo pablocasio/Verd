@@ -259,7 +259,7 @@ function App(){
         <div className="brand">
           <div className="brandIcon">🥬</div>
           <div>
-            <h1>Verdulista Pro</h1>
+            <h1>Verdulista v1.0</h1>
             <p>React + Vite · PDF colorido · imagen · compartir por WhatsApp</p>
           </div>
         </div>
